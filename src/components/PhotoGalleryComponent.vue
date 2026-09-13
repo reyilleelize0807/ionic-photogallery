@@ -149,7 +149,7 @@ const closePhoto = () => {
 .gallery-header p {
   margin: 4px 0 0;
 
-  font-size: 15px;
+  font-size: 14px;
   color: #7c849d;
 }
 
