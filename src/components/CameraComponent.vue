@@ -1,27 +1,21 @@
 <template>
   <ion-card class="camera-card">
-    <ion-card-content>
-      <h2 class="camera-title">Camera</h2>
+    <ion-card-header>
+      <ion-card-title>Camera</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
       <ion-button
         expand="block"
-        class="take-picture-button"
+        class="take-photo-button"
         @click="takePicture"
       >
-        <ion-icon
-          slot="start"
-          :icon="cameraIcon"
-        />
+        <ion-icon slot="start" :icon="cameraIcon" />
         TAKE PICTURE
       </ion-button>
 
-      <ion-text
-        v-if="errorMessage"
-        color="danger"
-      >
-        <p class="error-message">
-          {{ errorMessage }}
-        </p>
+      <ion-text v-if="errorMessage" color="danger">
+        <p class="error-message">{{ errorMessage }}</p>
       </ion-text>
     </ion-card-content>
   </ion-card>
@@ -34,6 +28,8 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
   IonIcon,
   IonText,
 } from '@ionic/vue'
@@ -64,94 +60,59 @@ const takePicture = async () => {
     })
 
     if (capturedPhoto.webPath) {
+      // Send photo to parent
       emit('photoCaptured', capturedPhoto.webPath)
     }
   } catch (error) {
     console.error('Camera error:', error)
-    errorMessage.value = 'Unable to capture photo. Please try again.'
+    errorMessage.value = 'Unable to capture photo.'
   }
 }
 </script>
 
 <style scoped>
 .camera-card {
-  margin: 0 0 42px 0;
-
-  --background: #f1f2ff;
-
-  border-radius: 28px;
-
+  margin: 12px 16px;
+  border-radius: 20px;
+  background: #f7f7ff;
   box-shadow: none;
+  padding: 2px;
+}
+
+.camera-card ion-card-header {
+  padding: 8px 16px 2px;
 }
 
 .camera-card ion-card-content {
-  padding: 34px 32px 38px;
+  padding: 4px 16px 10px;
 }
 
-.camera-title {
-  margin: 0 0 22px;
-
-  font-size: 32px;
-  font-weight: 700;
-
-  color: #202846;
-}
-
-/* TAKE PICTURE BUTTON */
-.take-picture-button {
-  --background: linear-gradient(
-    90deg,
-    #4f46e5,
-    #6366f1
-  );
-
-  --background-hover: #4f46e5;
-
-  --border-radius: 50px;
-
-  --box-shadow: none;
-
-  height: 64px;
-
+ion-card-title {
   font-size: 20px;
-  font-weight: 700;
-
-  letter-spacing: 0.3px;
+  font-weight: 600;
 }
 
-.take-picture-button ion-icon {
-  font-size: 30px;
+.take-photo-button {
+  --background: #7c3aed;
+  --background-hover: #6d28d9;
+  --border-radius: 9999px;
+
+  height: 44px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  margin-top: 4px;
+}
+
+.take-photo-button ion-icon {
+  font-size: 22px;
+  margin-right: 8px;
 }
 
 .error-message {
-  margin-top: 15px;
   text-align: center;
-  font-size: 14px;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .camera-card {
-    border-radius: 22px;
-    margin-bottom: 32px;
-  }
-
-  .camera-card ion-card-content {
-    padding: 25px 20px 28px;
-  }
-
-  .camera-title {
-    font-size: 26px;
-    margin-bottom: 18px;
-  }
-
-  .take-picture-button {
-    height: 56px;
-    font-size: 16px;
-  }
-
-  .take-picture-button ion-icon {
-    font-size: 25px;
-  }
+  margin-top: 12px;
+  font-size: 13px;
 }
 </style>

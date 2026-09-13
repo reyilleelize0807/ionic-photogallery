@@ -3,15 +3,16 @@
 
     <!-- Gallery Header -->
     <div class="gallery-header">
-      <h2>Photo Gallery</h2>
-
-      <p>
-        {{ photos.length }}
-        photo{{ photos.length !== 1 ? 's' : '' }}
-      </p>
+      <div>
+        <h2>Photo Gallery</h2>
+        <p>
+          {{ photos.length }}
+          photo{{ photos.length !== 1 ? 's' : '' }}
+        </p>
+      </div>
     </div>
 
-    <!-- Empty Gallery -->
+    <!-- Empty State -->
     <div
       v-if="photos.length === 0"
       class="empty-gallery"
@@ -23,11 +24,11 @@
       <h3>No Photos Yet</h3>
 
       <p>
-        Take a picture to start your gallery.
+        Take a picture to add photos to your gallery.
       </p>
     </div>
 
-    <!-- Photo Grid -->
+    <!-- Photo Gallery -->
     <ion-grid
       v-else
       class="photo-grid"
@@ -37,9 +38,8 @@
           v-for="(photo, index) in photos"
           :key="index"
           size="6"
-          size-sm="6"
-          size-md="6"
-          size-lg="6"
+          size-md="4"
+          size-lg="3"
         >
           <div
             class="photo-card"
@@ -58,7 +58,7 @@
       </ion-row>
     </ion-grid>
 
-    <!-- Full Photo Preview -->
+    <!-- Photo Preview Modal -->
     <ion-modal
       :is-open="selectedPhoto !== null"
       @didDismiss="closePhoto"
@@ -128,45 +128,46 @@ const closePhoto = () => {
 <style scoped>
 .gallery-container {
   width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-/* HEADER */
+/* Header */
 .gallery-header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .gallery-header h2 {
   margin: 0;
 
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
 
-  color: #17213f;
+  color: #000000;
 }
 
 .gallery-header p {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
 
-  font-size: 20px;
-
-  color: #7d849b;
+  font-size: 15px;
+  color: #7c849d;
 }
 
-/* EMPTY STATE */
+/* Empty Gallery */
 .empty-gallery {
-  padding: 50px 20px;
+  padding: 35px 20px;
 
   text-align: center;
 
-  border: 2px dashed #d9dcef;
-  border-radius: 20px;
+  border: none;
+  border-radius: 18px;
 
-  background: #fafaff;
+  background: #f7f7ff;
 }
 
 .empty-icon {
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
 
   margin: 0 auto 15px;
 
@@ -176,63 +177,59 @@ const closePhoto = () => {
 
   border-radius: 50%;
 
-  background: #eef0ff;
+  background: #e9e9ff;
 }
 
 .empty-icon ion-icon {
-  font-size: 38px;
-  color: #5b5fea;
+  font-size: 34px;
+  color: #6366f1;
 }
 
 .empty-gallery h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 
-  font-size: 20px;
-  color: #202846;
+  font-size: 18px;
+  color: #303653;
 }
 
 .empty-gallery p {
   margin: 0;
 
-  color: #7d849b;
+  font-size: 14px;
+  color: #7c849d;
 }
 
-/* GRID */
+/* Gallery Grid */
 .photo-grid {
   padding: 0;
-  margin: 0 -6px;
 }
 
 .photo-grid ion-col {
-  padding: 6px;
+  padding: 5px;
 }
 
-/* PHOTO */
+/* Photo */
 .photo-card {
   position: relative;
 
   width: 100%;
-
-  aspect-ratio: 1.45 / 1;
+  aspect-ratio: 1.4 / 1;
 
   overflow: hidden;
 
-  border-radius: 20px;
+  border-radius: 14px;
 
-  background: #eeeeee;
+  background: #eee;
 
   cursor: pointer;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  box-shadow: none;
+
+  transition: transform 0.2s ease;
 }
 
 .photo-card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 8px 20px rgba(30, 40, 80, 0.15);
+  transform: translateY(-2px);
 }
 
 .photo-card img {
@@ -244,7 +241,7 @@ const closePhoto = () => {
   object-fit: cover;
 }
 
-/* IMAGE HOVER */
+/* Hover Overlay */
 .photo-overlay {
   position: absolute;
 
@@ -254,7 +251,7 @@ const closePhoto = () => {
   align-items: center;
   justify-content: center;
 
-  background: rgba(20, 25, 60, 0);
+  background: rgba(0, 0, 0, 0);
 
   opacity: 0;
 
@@ -262,16 +259,16 @@ const closePhoto = () => {
 }
 
 .photo-overlay ion-icon {
-  font-size: 32px;
+  font-size: 28px;
   color: white;
 }
 
 .photo-card:hover .photo-overlay {
-  background: rgba(20, 25, 60, 0.35);
+  background: rgba(0, 0, 0, 0.3);
   opacity: 1;
 }
 
-/* MODAL */
+/* Preview */
 .preview-content {
   --background: #000;
 }
@@ -281,37 +278,16 @@ const closePhoto = () => {
   height: 100%;
 
   object-fit: contain;
-
-  display: block;
 }
 
-/* TABLET */
-@media (max-width: 768px) {
+/* Mobile */
+@media (max-width: 600px) {
+  .gallery-container {
+    padding: 0 16px;
+  }
+
   .gallery-header h2 {
-    font-size: 28px;
-  }
-
-  .gallery-header p {
-    font-size: 17px;
-  }
-
-  .photo-card {
-    border-radius: 16px;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  .gallery-header h2 {
-    font-size: 25px;
-  }
-
-  .gallery-header p {
-    font-size: 16px;
-  }
-
-  .photo-grid {
-    margin: 0 -4px;
+    font-size: 24px;
   }
 
   .photo-grid ion-col {
@@ -319,8 +295,7 @@ const closePhoto = () => {
   }
 
   .photo-card {
-    border-radius: 13px;
-    aspect-ratio: 1 / 1;
+    border-radius: 12px;
   }
 }
 </style>

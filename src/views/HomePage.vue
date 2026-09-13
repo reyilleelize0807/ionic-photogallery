@@ -1,12 +1,12 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>My Photo Gallery</ion-title>
-      </ion-toolbar>
-    </ion-header>
 
     <ion-content>
+
+      <!-- Page Title -->
+      <div class="page-title">
+        My Photo Gallery
+      </div>
 
       <!-- Camera -->
       <CameraComponent
@@ -19,6 +19,7 @@
       />
 
     </ion-content>
+
   </ion-page>
 </template>
 
@@ -27,10 +28,7 @@ import { ref } from 'vue'
 
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
 } from '@ionic/vue'
 
 import CameraComponent from '@/components/CameraComponent.vue'
@@ -42,3 +40,18 @@ const addPhoto = (photo: string) => {
   photos.value.unshift(photo)
 }
 </script>
+
+<style scoped>
+ion-content {
+  --background: #f3e8ff;
+}
+
+.page-title {
+  padding: 20px 16px 4px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #000000;
+}
+</style>
