@@ -1,2 +1,18 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+:root {
+	--app-background: #f3e8ff;
+	--app-surface: #ffffff;
+	--app-surface-muted: #f7f7ff;
+	--app-surface-accent: #e9e9ff;
+	--app-text: #241b35;
+	--app-text-muted: #6f6680;
+	--app-primary: #7c3aed;
+	--app-primary-strong: #6d28d9;
+
+	--ion-background-color: var(--app-background);
+	--ion-text-color: var(--app-text);
+	--ion-color-primary: var(--app-primary);
+	--ion-color-primary-contrast: #ffffff;
+}

@@ -143,14 +143,14 @@ const closePhoto = () => {
   font-size: 24px;
   font-weight: 700;
 
-  color: #000000;
+  color: var(--app-text);
 }
 
 .gallery-header p {
   margin: 4px 0 0;
 
   font-size: 14px;
-  color: #7c849d;
+  color: var(--app-text-muted);
 }
 
 /* Empty Gallery */
@@ -162,7 +162,7 @@ const closePhoto = () => {
   border: none;
   border-radius: 18px;
 
-  background: #f7f7ff;
+  background: var(--app-surface);
 }
 
 .empty-icon {
@@ -177,26 +177,26 @@ const closePhoto = () => {
 
   border-radius: 50%;
 
-  background: #e9e9ff;
+  background: var(--app-surface-accent);
 }
 
 .empty-icon ion-icon {
   font-size: 34px;
-  color: #6366f1;
+  color: var(--app-primary);
 }
 
 .empty-gallery h3 {
   margin: 0 0 6px;
 
   font-size: 18px;
-  color: #303653;
+  color: var(--app-text);
 }
 
 .empty-gallery p {
   margin: 0;
 
   font-size: 14px;
-  color: #7c849d;
+  color: var(--app-text-muted);
 }
 
 /* Gallery Grid */

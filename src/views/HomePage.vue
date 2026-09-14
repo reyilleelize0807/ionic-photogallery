@@ -43,15 +43,15 @@ const addPhoto = (photo: string) => {
 
 <style scoped>
 ion-content {
-  --background: #f3e8ff;
+  --background: var(--app-background);
 }
 
 .page-title {
-  padding: 20px 16px 4px;
+  padding: calc(20px + env(safe-area-inset-top)) 16px 4px;
 
   font-size: 24px;
   font-weight: 700;
 
-  color: #000000;
+  color: var(--app-text);
 }
 </style>

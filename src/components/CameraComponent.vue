@@ -74,7 +74,7 @@ const takePicture = async () => {
 .camera-card {
   margin: 12px 16px;
   border-radius: 20px;
-  background: #f7f7ff;
+  background: var(--app-surface);
   box-shadow: none;
   padding: 2px;
 }
@@ -93,8 +93,8 @@ ion-card-title {
 }
 
 .take-photo-button {
-  --background: #7c3aed;
-  --background-hover: #6d28d9;
+  --background: var(--app-primary);
+  --background-hover: var(--app-primary-strong);
   --border-radius: 9999px;
 
   height: 44px;
